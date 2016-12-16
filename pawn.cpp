@@ -16,14 +16,20 @@ bool Pawn::isValidMove(Piece*** board, Position destiny){
 	if(color == 'N'){
 		int diffX = position.getX()-destiny.getX();
 		if((diffY==1&&diffX==0) || (diffY==2&&firstMove&&diffX==0)){ //primer movimiento o movimiento hacia adelante
-			if(board[destiny.getY()][destiny.getX()] == NULL)
+			if(board[destiny.getY()][destiny.getX()] == NULL){ //agregar braquets
+				firstMove=false; // el fisrtmove se declara false porque ya no puede volver a moverse 2 espacios despues de la primera vez
 				return true;
-			return false;
+			}else{
+				return false;
+			}
+
 		}
 		else if((diffY==1&&diffX==1)){
-			if(board[destiny.getY()][destiny.getX()]->getColor() != color) //comer en diagonal
+			if(board[destiny.getY()][destiny.getX()]->getColor() != color){//agregar braquets
 				return true;
-			return false;
+			}else{
+				return false;
+			}
 		}
 		else{
 			return false;
@@ -31,14 +37,19 @@ bool Pawn::isValidMove(Piece*** board, Position destiny){
 	} else if(color == 'B'){
 		int diffX = destiny.getX()-position.getX();
 		if((diffY==1&&diffX==0) || (diffY==2&&firstMove&&diffX==0)){ //primer movimiento o movimiento hacia adelante
-			if(board[destiny.getY()][destiny.getX()] == NULL)
+			if(board[destiny.getY()][destiny.getX()] == NULL){
+				firstMove=false; // el fisrtmove se declara false porque ya no puede volver a moverse 2 espacios despues de la primera vez
 				return true;
-			return false;
+			}else{
+				return false;
+			}
 		}
 		else if((diffY==1&&diffX==1)){
-			if(board[destiny.getY()][destiny.getX()]->getColor() != color) //comer en diagonal
+			if(board[destiny.getY()][destiny.getX()]->getColor() != color){//agregar braquets
 				return true;
-			return false;
+			}else{
+				return false;
+			}
 		}
 		else{
 			return false;
